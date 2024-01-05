@@ -21,30 +21,9 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          secret: op://secrets/ProxmoxAPI/password
+          SECRET: op://secrets/ProxmoxAPI/password
 
       - name: Print masked secret
         run: echo "Secret: $SECRET"
-        # Prints: Secret: ***
 
-      - name: Run script file
-        run: |
-          chmod +x ./Scripts/win2022.sh
-          ./Scripts/win2022.sh
-        shell: bash
-       
-        
-
-      - name: Setup `packer`
-        uses: hashicorp/setup-packer@main
-        id: setup
-        with:
-          version: latest
-
-      - name: Run `packer init`
-        id: init
-        run: "packer init ./Windows/Server_2022/build.pkr.hcl"
-
-      - name: Run `packer validate`
-        id: validate
-        run: "packer validate ./Windows/Server_2022/build.pkr.hcl"
+ 
