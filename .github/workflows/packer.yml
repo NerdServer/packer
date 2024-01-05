@@ -47,8 +47,7 @@ jobs:
         id: validate
         run: "packer validate -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
         env:
-          winrm_password: ${{ steps.load-load-packer-credentials.outputs.winrm_password }}
-          
+          winrm_password: ${{ env.winrm_password }}
   
 
 
