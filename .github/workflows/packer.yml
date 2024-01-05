@@ -20,10 +20,7 @@ jobs:
         uses: 1password/install-cli-action@v1
 
       - name: Load Connect credentials
-        id: load-connect-credentials
         uses: 1password/load-secrets-action@v1
-        with:
-          export-env: false
         env:
           OP_CONNECT_TOKEN: op://secrets/Secrets-Access-Token/credential
           OP_CONNECT_HOST: op://secrets/Secrets-Access-Token/host
