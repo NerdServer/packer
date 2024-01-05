@@ -26,9 +26,16 @@ jobs:
           ./Scripts/win2022.sh
         shell: bash
 
-      - name : Build Windows 2022 with Packer
-        uses: hashicorp/setup-packer@v1
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
         with:
-          version: 1.7.4
-          run: |
-            packer build build.pkr.hcl
+          version: latest
+
+      - name: Run `packer init`
+        id: init
+        run: "packer init ./Windows/Server_2022/build.pkr.hcl"
+
+      - name: Run `packer validate`
+        id: validate
+        run: "packer validate ./Windows/Server_2022/build.pkr.hcl"
