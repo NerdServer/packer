@@ -22,6 +22,12 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          winrm_password: op://secrets/ProxmoxAPI/winrm_password
+          winrm_username: op://secrets/ProxmoxAPI/winrm_username
+          token: op://secrets/ProxmoxAPI/password
+          username: op://secrets/ProxmoxAPI/username 
+          proxmox_url: op://secrets/ProxmoxAPI/url 
+          node: op://secrets/ProxmoxAPI/node 
          
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
