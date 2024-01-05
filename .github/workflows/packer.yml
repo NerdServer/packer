@@ -22,8 +22,8 @@ jobs:
 
       - name: Run script file
         run: |
-          echo "OP_CONNECT_HOST: $connect-host"
-          echo "OP_CONNECT_TOKEN: $connect-token"
+          echo "OP_CONNECT_HOST: ${{ secrets.OP_CONNECT_HOST }}
+          echo "OP_CONNECT_TOKEN: ${{ secrets.OP_CONNECT_TOKEN }}
           chmod +x ./Scripts/win2022.sh
           ./Scripts/win2022.sh
         shell: bash
