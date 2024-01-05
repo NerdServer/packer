@@ -15,20 +15,15 @@ jobs:
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v1
 
-      - name: Load Connect credentials
-        id: op-load-secret
-        uses: 1password/load-secrets-action@v1
+      - name: Configure 1Password Service Account
+        uses: 1password/load-secrets-action/configure@v1
         with:
-          # Export loaded secrets as environment variables
-          export-env: true
-        env:
-          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          winrm_password: op://secrets/ProxmoxAPI/winrm_password
-          winrm_username: op://secrets/ProxmoxAPI/winrm_username
-          token: op://secrets/ProxmoxAPI/password
-          username: op://secrets/ProxmoxAPI/username 
-          proxmox_url: op://secrets/ProxmoxAPI/url 
-          node: op://secrets/ProxmoxAPI/node 
+          # Persist the 1Password Service Account Authorization token
+          # for next steps.
+          # Keep in mind that every single step in the job is now
+          # able to access the token.
+          service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+
          
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
@@ -39,18 +34,21 @@ jobs:
       - name: Run `packer init`
         id: init
         run: "packer init ./build.pkr.hcl"
+
+      - name: Load Packer Credentials
+        id: load-packer-credentials
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: false
+        env:
+          winrm_password: op://secrets/ProxmoxAPI/winrm_password
   
       - name: Run `packer validate`
         id: validate
         run: "packer validate -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
         env:
-          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          winrm_password: ${{ steps.op-load-secret.outputs.winrm_password }}
-          winrm_username: op://secrets/ProxmoxAPI/winrm_username
-          token: op://secrets/ProxmoxAPI/password
-          username: op://secrets/ProxmoxAPI/username 
-          proxmox_url: op://secrets/ProxmoxAPI/url 
-          node: op://secrets/ProxmoxAPI/node 
+          winrm_password: ${{ steps.load-load-packer-credentials.outputs.winrm_password }}
+          
   
 
 
