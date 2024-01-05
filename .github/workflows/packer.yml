@@ -46,7 +46,7 @@ jobs:
           node: op://secrets/ProxmoxAPI/node
           proxmox_url: op://secrets/ProxmoxAPI/url
           username: op://secrets/ProxmoxAPI/username
-          token: op://secrets/ProxmoxAPI/token
+          token: op://secrets/ProxmoxAPI/password
   
       - name: Run `packer validate`
         id: validate
