@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@main
 
-      - name: Load secrets
+      - name: Load secrets from 1Password
         uses: 1password/load-secrets-action/configure@v1
         with:
           service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
@@ -21,7 +21,11 @@ jobs:
 
       - name: Load Connect credentials
         uses: 1password/load-secrets-action@v1
+        with:
+          # Export loaded secrets as environment variables
+          export-env: true
         env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           OP_CONNECT_TOKEN: op://secrets/Secrets-Access-Token/credential
           OP_CONNECT_HOST: op://secrets/Secrets-Access-Token/host
 
