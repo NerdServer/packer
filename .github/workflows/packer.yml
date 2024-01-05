@@ -10,5 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@main
-
-      
+        
+      - name: Load secrets
+        uses: 1password/load-secrets-action/configure@v1
+        with:
+          connect-host: OP_CONNECT_HOST
+          connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
