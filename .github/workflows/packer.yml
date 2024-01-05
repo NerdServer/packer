@@ -24,10 +24,10 @@ jobs:
         id: load-connect-credentials
         uses: 1password/load-secrets-action@v1
         with:
-          export-env: true
+          export-env: false
         env:
-          OP_CONNECT_TOKEN: op://secrets/Secrets-Access-Token/credential
-          OP_CONNECT_HOST: op://secrets/Secrets-Access-Token/host
+          OP_CONNECT_TOKEN1: op://secrets/Secrets-Access-Token/credential
+          OP_CONNECT_HOST1: op://secrets/Secrets-Access-Token/host
 
       - name: Run script file
         run: |
