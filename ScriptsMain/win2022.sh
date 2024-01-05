@@ -1,4 +1,4 @@
 #!/bin/sh
 $OP_SERVICE_ACCOUNT_TOKEN
-cd ./Server_2022/
+cd ./
 op inject -i build.pkrvars.hcl -o build.auto.pkrvars.hcl
