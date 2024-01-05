@@ -39,7 +39,7 @@ jobs:
         id: load-packer-credentials
         uses: 1password/load-secrets-action@v1
         with:
-          export-env: false
+          export-env: True
         env:
           winrm_password: op://secrets/ProxmoxAPI/winrm_password
   
