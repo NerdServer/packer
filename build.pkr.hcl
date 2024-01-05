@@ -1,3 +1,6 @@
+winrm_password = var.winrm_password
+
+
 packer {
   required_plugins {
     name = {
