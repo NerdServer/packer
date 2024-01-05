@@ -26,8 +26,8 @@ jobs:
           ./Scripts/win2022.sh
         shell: bash
         env:
-          OP_CONNECT_TOKEN: "{{ op://secrets/Secrets Access Token: Github/credential }}"
-          OP_CONNECT_HOST: "{{ op://secrets/Secrets Access Token: Github/host }}"
+          OP_CONNECT_TOKEN: op://secrets/Secrets-Access-Token/credential
+          OP_CONNECT_HOST: op://secrets/Secrets-Access-Token/host
         
 
       - name: Setup `packer`
