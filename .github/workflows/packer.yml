@@ -23,7 +23,7 @@ jobs:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           SECRET: op://secrets/ProxmoxAPI/password
 
-      - name: Print masked secret
-        run: echo "Secret: $SECRET"
+    
+
 
  
