@@ -58,6 +58,17 @@ jobs:
           PKR_VAR_proxmox_url: ${{ env.proxmox_url}}
           PKR_VAR_username: ${{ env.username }}
           PKR_VAR_token: ${{ env.token }}
+
+      - name: Run `packer build`
+        id: build
+        run: "packer build -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
+        env:
+          PKR_VAR_winrm_password: ${{ env.winrm_password }}
+          PKR_VAR_winrm_username: ${{ env.winrm_username}}
+          PKR_VAR_node: ${{ env.node}}
+          PKR_VAR_proxmox_url: ${{ env.proxmox_url}}
+          PKR_VAR_username: ${{ env.username }}
+          PKR_VAR_token: ${{ env.token }}
           
   
 
