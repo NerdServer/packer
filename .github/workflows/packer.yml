@@ -17,6 +17,9 @@ jobs:
       - name: Load Connect credentials
         uses: 1password/load-secrets-action@v1
         with:
+          # Export loaded secrets as environment variables
+          export-env: true
+        env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
       - name: Run script file
@@ -24,6 +27,9 @@ jobs:
           chmod +x ./Scripts/win2022.sh
           ./Scripts/win2022.sh
         shell: bash
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+
          
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
