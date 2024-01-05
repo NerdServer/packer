@@ -14,8 +14,7 @@ jobs:
       - name: Load secrets
         uses: 1password/load-secrets-action/configure@v1
         with:
-          connect-host: ${{ secrets.OP_CONNECT_HOST }}
-          connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
+          service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
       
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v1
@@ -26,8 +25,8 @@ jobs:
         with:
           export-env: false
         env:
-          OP_CONNECT_TOKEN1: op://secrets/Secrets-Access-Token/credential
-          OP_CONNECT_HOST1: op://secrets/Secrets-Access-Token/host
+          OP_CONNECT_TOKEN: op://secrets/Secrets-Access-Token/credential
+          OP_CONNECT_HOST: op://secrets/Secrets-Access-Token/host
 
       - name: Run script file
         run: |
