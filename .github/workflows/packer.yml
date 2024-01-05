@@ -47,7 +47,7 @@ jobs:
         id: validate
         run: "packer validate -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
         env:
-          winrm_password: ${{ env.winrm_password }}
+          PKR_VAR_winrm_password: ${{ env.winrm_password }}
   
 
 
