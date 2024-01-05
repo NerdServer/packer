@@ -1,5 +1,6 @@
-winrm_password = var.winrm_password
-
+"environment_vars": [
+    "winrm_password:"{{ env `winrm_password` }}"
+]
 
 packer {
   required_plugins {
@@ -40,7 +41,7 @@ source "proxmox-iso" "win2022" {
   username         = "${var.username}"
   vm_name          = "${var.vm_name}"
   winrm_insecure   = true
-  winrm_password   = "${var.winrm_password}"
+  winrm_password   = "{ user `winrm_password` }}"
   winrm_timeout    = "4h"
   winrm_use_ssl    = true
   winrm_username   = "${var.winrm_username}"
