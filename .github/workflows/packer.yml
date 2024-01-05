@@ -41,7 +41,7 @@ jobs:
   
       - name: Run `packer validate`
         id: validate
-        run: "packer validate ./build.pkr.hcl -no-warn-undeclared-var"
+        run: packer validate ./build.pkr.hcl -no-warn-undeclared-var
      
   
 
