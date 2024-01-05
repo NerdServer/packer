@@ -9,7 +9,10 @@ jobs:
     runs-on: "self-hosted"  # (optional) name of the runner labels, groups
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@main
+        with:
+          path: packer
+          clean: true
       
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v1
