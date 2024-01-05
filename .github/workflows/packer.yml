@@ -27,6 +27,9 @@ jobs:
           chmod +x ./Scripts/win2022.sh
           ./Scripts/win2022.sh
         shell: bash
+        env:
+          OP_CONNECT_TOKEN: ${{ secrets.OP_CONNECT_TOKEN }}
+          OP_CONNECT_HOST: "http:/10.0.40.25:8080/v1/vaults"
         
 
       - name: Setup `packer`
