@@ -16,6 +16,7 @@ jobs:
         uses: 1password/install-cli-action@v1
 
       - name: Load Connect credentials
+        id: op-load-secret
         uses: 1password/load-secrets-action@v1
         with:
           # Export loaded secrets as environment variables
@@ -23,7 +24,7 @@ jobs:
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           winrm_password: op://secrets/ProxmoxAPI/winrm_password
-          export winrm_username: op://secrets/ProxmoxAPI/winrm_username
+          winrm_username: op://secrets/ProxmoxAPI/winrm_username
           token: op://secrets/ProxmoxAPI/password
           username: op://secrets/ProxmoxAPI/username 
           proxmox_url: op://secrets/ProxmoxAPI/url 
@@ -44,7 +45,7 @@ jobs:
         run: "packer validate -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          winrm_password: op://secrets/ProxmoxAPI/winrm_password
+          winrm_password: ${{ steps.op-load-secret.outputs.winrm_password }}": op://secrets/ProxmoxAPI/winrm_password
           winrm_username: op://secrets/ProxmoxAPI/winrm_username
           token: op://secrets/ProxmoxAPI/password
           username: op://secrets/ProxmoxAPI/username 
