@@ -8,5 +8,5 @@ numvcpus = "2"
 #$token 
 #$username 
 vm_name = "win2022-template"
-winrm_password = var.winrm_password
+#winrm_password = var.winrm_password
 #winrm_username = 
