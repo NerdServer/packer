@@ -42,12 +42,23 @@ jobs:
           export-env: True
         env:
           winrm_password: op://secrets/ProxmoxAPI/winrm_password
+          winrm_username: op://secrets/ProxmoxAPI/winrm_username
+          node: op://secrets/ProxmoxAPI/node
+          proxmox_url: op://secrets/ProxmoxAPI/proxmox_url
+          username: op://secrets/ProxmoxAPI/username
+          token: op://secrets/ProxmoxAPI/token
   
       - name: Run `packer validate`
         id: validate
         run: "packer validate -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
         env:
           PKR_VAR_winrm_password: ${{ env.winrm_password }}
+          PKR_VAR_winrm_username: ${{ env.winrm_username}}
+          PKR_VAR_node: ${{ env.node}}
+          PKR_VAR_proxmox_url: ${{ env.proxmox_url}}
+          PKR_VAR_username: ${{ env.username }}
+          PKR_VAR_token: ${{ env.token }}
+          
   
 
 
