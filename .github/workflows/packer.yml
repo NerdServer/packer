@@ -25,7 +25,7 @@ jobs:
       - name: Run script file
         run: |
           chmod +x ./ScriptsMain/win2022.sh
-          ./Scripts/win2022.sh
+          ./ScriptsMain/win2022.sh
         shell: bash
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
