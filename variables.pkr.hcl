@@ -1,11 +1,9 @@
 variable "boot_wait" {
   type    = string
-  default = "5s"
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852"
 }
 
 variable "iso_file" {
