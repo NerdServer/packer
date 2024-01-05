@@ -1,0 +1,14 @@
+name: Build Windows 2022 with Packer
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: "self-hosted"  # (optional) name of the runner labels, groups
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      

@@ -1,0 +1,1 @@
+hdiutil makehybrid -o win10autounattend.iso -hfs -joliet -iso -default-volume-name cidata ../Windows/Win10/scripts/bios/
