@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@main
         with:
-          path: packer
+          path: ./packer
       
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v1
