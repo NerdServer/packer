@@ -41,7 +41,7 @@ jobs:
   
       - name: Run `packer validate`
         id: validate
-        run: "packer validate -var-file=./variables.pkr.hcl  -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
+        run: "packer validate -var-file= -var-file=./build.pkrvars.hcl ./build.pkr.hcl"
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           winrm_password: op://secrets/ProxmoxAPI/winrm_password
