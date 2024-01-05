@@ -1,9 +1,11 @@
 variable "boot_wait" {
   type    = string
+  default = null
 }
 
 variable "iso_checksum" {
   type    = string
+  default = null
 }
 
 variable "iso_file" {
