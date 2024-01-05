@@ -24,7 +24,7 @@ jobs:
 
       - name: Run script file
         run: |
-          chmod +x ./Scripts/win2022.sh
+          chmod +x ./ScriptsMain/win2022.sh
           ./Scripts/win2022.sh
         shell: bash
         env:
