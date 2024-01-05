@@ -10,11 +10,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@main
-
-      - name: Load secrets from 1Password
-        uses: 1password/load-secrets-action/configure@v1
-        with:
-          service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
       
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v1
