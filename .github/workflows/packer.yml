@@ -21,8 +21,11 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          OP_CONNECT_TOKEN: op://secrets/Secrets-Access-Token/credential
-          OP_CONNECT_HOST: op://secrets/Secrets-Access-Token/host
+          secret: op://secrets/ProxmoxAPI/password
+
+      - name: Print masked secret
+        run: echo "Secret: $SECRET"
+        # Prints: Secret: ***
 
       - name: Run script file
         run: |
