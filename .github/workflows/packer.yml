@@ -14,7 +14,7 @@ jobs:
       - name: Load secrets
         uses: 1password/load-secrets-action/configure@v1
         with:
-          connect-host: "http:/10.0.40.25:8080/v1/vaults"
+          connect-host: ${{ secrets.OP_CONNECT_HOST }}
           connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
       
       - name: Install 1Password CLI
@@ -22,7 +22,7 @@ jobs:
 
       - name: Run script file
         run: |
-          echo "OP_CONNECT_HOST: ${{ secrets.OP_CONNECT_HOST }}
+          echo "OP_CONNECT_HOST: "http:/10.0.40.25:8080/v1/vaults"
           echo "OP_CONNECT_TOKEN: ${{ secrets.OP_CONNECT_TOKEN }}
           chmod +x ./Scripts/win2022.sh
           ./Scripts/win2022.sh
