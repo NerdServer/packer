@@ -14,7 +14,7 @@ jobs:
       - name: Load secrets
         uses: 1password/load-secrets-action/configure@v1
         with:
-          connect-host: OP_CONNECT_HOST
+          connect-host: ${{ secrets.OP_CONNECT_HOST }}
           connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
       
       - name: Install 1Password CLI
@@ -25,6 +25,9 @@ jobs:
           chmod +x ./Scripts/win2022.sh
           ./Scripts/win2022.sh
         shell: bash
+        env:
+          OP_CONNECT_HOST: ${{ secrets.OP_CONNECT_HOST }}
+          OP_CONNECT_TOKEN: ${{ secrets.OP_CONNECT_TOKEN }}
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
