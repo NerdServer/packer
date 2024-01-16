@@ -1,8 +1,8 @@
 name: Build Windows 2022 with Packer
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'Win2022/**'
 
 jobs:
   deploy:
