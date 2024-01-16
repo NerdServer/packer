@@ -48,6 +48,12 @@ jobs:
           connect-host: ${{ secrets.OP_CONNECT_HOST }}
           connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
 
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: latest
+
       - name: Load Packer Credentials
         id: load-packer-credentials
         uses: 1password/load-secrets-action@v1
