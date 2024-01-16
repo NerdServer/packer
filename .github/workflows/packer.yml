@@ -37,7 +37,7 @@ jobs:
       - name: Run `packer init`
         working-directory: ${{ env.working_dir }}
         id: init
-        run: "packer init build.pkr.hcl"
+        run: "packer init ./build.pkr.hcl"
 
       - name: Load Packer Credentials
         id: load-packer-credentials
