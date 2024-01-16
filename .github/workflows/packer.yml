@@ -4,8 +4,7 @@ on:
     paths:
       - 'Win2022/**'
   workflow_dispatch:
-env:
-  working_directory: "./Win2022"
+
 jobs:
   deploy:
     runs-on: "self-hosted"  # (optional) name of the runner labels, groups
@@ -31,7 +30,8 @@ jobs:
   
       - name: Run `packer init`
         id: init
-        run: "packer init ./build.pkr.hcl"
+        run: "packer init ./Win2022/build.pkr.hcl"
+
       
 
       # - name: Load Packer Credentials
