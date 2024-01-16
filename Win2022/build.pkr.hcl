@@ -48,7 +48,7 @@ build {
   sources = ["source.proxmox-iso.win2022"]
 
   provisioner "powershell" {
-    scripts = ["./scripts/setup.ps1"]
+    scripts = ["./Win2022/scripts/setup.ps1"]
   }
 
   provisioner "windows-restart" {
