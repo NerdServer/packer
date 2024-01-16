@@ -57,7 +57,7 @@ jobs:
           PKR_VAR_winrm_password: op://secrets/ProxmoxAPI/winrm_password
           PKR_VAR_winrm_username: op://secrets/ProxmoxAPI/winrm_username
           PKR_VAR_node: op://secrets/ProxmoxAPI/node
-          PKR_VAR_proxmox_url: op://secrets/ProxmoxAPI/url
+          PKR_VAR_proxmox_url: op://secrets/Terraform/host
           PKR_VAR_username: op://secrets/ProxmoxAPI/username
           PKR_VAR_token: op://secrets/ProxmoxAPI/password
   
