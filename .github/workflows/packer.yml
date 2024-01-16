@@ -69,7 +69,7 @@ jobs:
   
       - name: Run `packer validate`
         id: validate
-        run: "packer validate -var-file=build.pkrvars.hcl build.pkr.hcl"
+        run: "packer validate -var-file=${{ env.working_dir }}/build.pkrvars.hcl ${{ env.working_dir }}/build.pkr.hcl"
         
       # - name: Run `packer build`
       #   id: build
