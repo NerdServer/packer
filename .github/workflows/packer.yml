@@ -4,6 +4,8 @@ on:
     paths:
       - 'Win2022/**'
   workflow_dispatch:
+env:
+  working-directory: ./Win2022
 
 jobs:
   deploy:
@@ -30,7 +32,7 @@ jobs:
   
       - name: Run `packer init`
         id: init
-        run: "packer init ./Win2022/build.pkr.hcl"
+        run: "packer init ${{ env.working_dir }}/build.pkr.hcl"
 
       - name: debug
         run: |
