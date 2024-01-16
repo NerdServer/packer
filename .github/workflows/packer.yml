@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'Win2022/**'
+  workflow_dispatch:
 
 jobs:
   deploy:
