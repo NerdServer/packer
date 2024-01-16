@@ -5,7 +5,7 @@ on:
       - 'Win2022/**'
   workflow_dispatch:
 env:
-  working-directory: ./Win2022
+  working_directory: ./Win2022
 
 jobs:
   deploy:
