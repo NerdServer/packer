@@ -8,7 +8,7 @@ env:
   working_dir: ./Win2022
 
 jobs:
-  deploy:
+  checks:
     runs-on: "self-hosted"  # (optional) name of the runner labels, groups
     steps:
       - name: Checkout code
@@ -22,48 +22,49 @@ jobs:
         with:
           service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
-         
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
         id: setup
         with:
           version: latest
          
-  
       - name: Run `packer init`
         id: init
         run: "packer init ${{ env.working_dir }}/build.pkr.hcl"
 
-      - name: debug
-        run: |
-          ls -R
-          pwd
-      
+  validate:  
+    runs-on: "self-hosted"  
+    needs: checks
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+    
+      - name: Install 1Password CLI
+        uses: 1password/install-cli-action@v1
 
-      # - name: Load Packer Credentials
-      #   id: load-packer-credentials
-      #   uses: 1password/load-secrets-action@v1
-      #   with:
-      #     export-env: True
-      #   env:
-      #     winrm_password: op://secrets/ProxmoxAPI/winrm_password
-      #     winrm_username: op://secrets/ProxmoxAPI/winrm_username
-      #     node: op://secrets/ProxmoxAPI/node
-      #     proxmox_url: op://secrets/ProxmoxAPI/url
-      #     username: op://secrets/ProxmoxAPI/username
-      #     token: op://secrets/ProxmoxAPI/password
+      - name: Configure 1Password Service Account
+        uses: 1password/load-secrets-action/configure@v1
+        with:
+          connect-host: ${{ secrets.OP_CONNECT_HOST }}
+          connect-token: ${{ secrets.OP_CONNECT_TOKEN }}
+
+      - name: Load Packer Credentials
+        id: load-packer-credentials
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: True
+        env:
+          PKR_VAR_winrm_password: op://secrets/ProxmoxAPI/winrm_password
+          PKR_VAR_winrm_username: op://secrets/ProxmoxAPI/winrm_username
+          PKR_VAR_node: op://secrets/ProxmoxAPI/node
+          PKR_VAR_proxmox_url: op://secrets/ProxmoxAPI/url
+          PKR_VAR_username: op://secrets/ProxmoxAPI/username
+          PKR_VAR_token: op://secrets/ProxmoxAPI/password
   
-      # - name: Run `packer validate`
-      #   id: validate
-      #   run: "packer validate -var-file= build.pkrvars.hcl build.pkr.hcl"
-      #   env:
-      #     PKR_VAR_winrm_password: ${{ env.winrm_password }}
-      #     PKR_VAR_winrm_username: ${{ env.winrm_username}}
-      #     PKR_VAR_node: ${{ env.node}}
-      #     PKR_VAR_proxmox_url: ${{ env.proxmox_url}}
-      #     PKR_VAR_username: ${{ env.username }}
-      #     PKR_VAR_token: ${{ env.token }}
-
+      - name: Run `packer validate`
+        id: validate
+        run: "packer validate -var-file= ${{ env.working_dir }}/build.pkrvars.hcl ${{ env.working_dir }}/build.pkr.hcl"
+        
       # - name: Run `packer build`
       #   id: build
       #   run: "packer build -var-file= build.pkrvars.hcl build.pkr.hcl"
