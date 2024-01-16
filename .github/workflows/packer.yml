@@ -12,17 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v1
 
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
         with:
-          # Persist the 1Password Service Account Authorization token
-          # for next steps.
-          # Keep in mind that every single step in the job is now
-          # able to access the token.
           service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
          
@@ -34,7 +29,7 @@ jobs:
   
       - name: Run `packer init`
         id: init
-        run: "packer init ./build.pkr.hcl"
+        run: "packer init build.pkr.hcl"
 
       - name: Load Packer Credentials
         id: load-packer-credentials
