@@ -32,6 +32,10 @@ jobs:
         id: init
         run: "packer init ./Win2022/build.pkr.hcl"
 
+      - name: debug
+        run: |
+          ls -R
+          pwd
       
 
       # - name: Load Packer Credentials
