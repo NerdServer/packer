@@ -42,6 +42,7 @@ source "proxmox-iso" "win2022" {
   winrm_timeout    = "4h"
   winrm_use_ssl    = true
   winrm_username   = "${var.winrm_username}"
+  vmid             = "9001"
 }
 
 build {
