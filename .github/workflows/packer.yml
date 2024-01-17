@@ -66,7 +66,7 @@ jobs:
           PKR_VAR_username: op://secrets/ProxmoxAPI/username
           PKR_VAR_token: op://secrets/ProxmoxAPI/password
           
-    build:  
+  build:  
       runs-on: "self-hosted"  
       needs: validate
       steps:
