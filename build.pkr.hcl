@@ -48,7 +48,7 @@ build {
   sources = ["source.proxmox-iso.win2022"]
 
   provisioner "powershell" {
-    scripts = ["./setup.ps1"]
+    scripts = ["scripts/setup.ps1"]
   }
 
   provisioner "windows-restart" {
@@ -56,7 +56,7 @@ build {
   }
 
   provisioner "powershell" {
-    scripts = ["./win-update.ps1"]
+    scripts = ["scripts/win-update.ps1"]
   }
 
   provisioner "windows-restart" {
@@ -64,7 +64,7 @@ build {
   }
 
   provisioner "powershell" {
-    scripts = ["./win-update.ps1"]
+    scripts = ["scripts/win-update.ps1"]
   }
 
   provisioner "windows-restart" {
@@ -72,7 +72,7 @@ build {
   }
 
   provisioner "powershell" {
-    scripts = ["./cleanup.ps1"]
+    scripts = ["scripts/cleanup.ps1"]
   }
 
 }
