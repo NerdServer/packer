@@ -67,6 +67,7 @@ jobs:
           PKR_VAR_proxmox_url: op://secrets/Terraform/host
           PKR_VAR_username: op://secrets/ProxmoxAPI/username
           PKR_VAR_token: op://secrets/ProxmoxAPI/password
+          PKR_VAR_DIR: ${{ env.working_dir }}
   
       - name: Run `packer validate`
         id: validate
